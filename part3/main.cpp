@@ -69,14 +69,13 @@ int main(int argc, char* argv[]) {
         }
         /*
         TODO:
-        1. Extract the passage embedding and store it in alglib::real_2d_array, store the idx of each embedding in alglib::integer_1d_array
-        2. Build the KD-tree (alglib::kdtree) from the passages embeddings using alglib::buildkdtree
-        3. Perform the k-NN search using alglib::knnsearch
-        4. Query the results
-            - Get the index of each found neighbour  using alglib::kdtreequeryresultstags
-            - Get the distance between each found neighbour and the query embedding using alglib::kdtreequeryresultsdists
+        1. Extract embeddings from each passage and store them in an alglib::real_2d_array (rows = passages, cols = embedding dimensions).
+        2. Store passage IDs in an alglib::integer_1d_array as tags to keep track of passage identities.
+        3. Build a KD-tree index on the passage embeddings using alglib::kdtreebuildtagged for efficient nearest neighbor search.
+        4. Perform a k-nearest neighbor (k-NN) search with the query embedding using alglib::kdtreequeryaknn.
+        5. Retrieve the IDs (tags) and distances of the found nearest neighbors using alglib::kdtreequeryresultstags and alglib::kdtreequeryresultsdistances.
         */
-        
+
     }
     catch(alglib::ap_error &e) {
         std::cerr << "ALGLIB error: " << e.msg << std::endl;
